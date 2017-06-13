@@ -19,6 +19,14 @@ namespace ObjetosNoPlano
         {
             x = x - 3;
         }
+		public void AndarParaCima()
+		{
+			y+=3;
+		}
+		public void AndarParaBaixo()
+		{
+			y-=3;
+		}
 
     }
 }
