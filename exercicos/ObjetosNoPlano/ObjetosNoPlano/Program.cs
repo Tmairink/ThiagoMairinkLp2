@@ -34,8 +34,16 @@ namespace ObjetosNoPlano
                 {
                     obj.AndarParaEsquerda();
                 }
+				if(comando== ConsoleKey.UpArrow)
+				{
+					obj.AndarParaCima();
+				}
+				else if (comando== ConsoleKey.DownArrow)
+				{
+					obj.AndarParaBaixo();
+				}
 
-                if (obj.x > 0 && obj.x < b)
+                if (obj.x > 0 && obj.x < b && obj.y > 0 && obj.y < a)
                 {
                     Console.WriteLine("{0},{1}", obj.x, obj.y);
                 }
@@ -49,11 +57,21 @@ namespace ObjetosNoPlano
 
 
                     }
-                    else if (obj.x > b)
+                    else if(obj.x > b)
                     {
                         Console.WriteLine("Saiu da Tela");
                         obj.x = b;
                     }
+					if(obj.y < 0)
+					{
+						Console.WriteLine("saiu da tela");
+						obj.y = 0;
+					}
+					else if(obj.y>a)
+					{
+						Console.WriteLine("Saiu da tela");
+						obj.y = a;
+					}
                 }
             }
            
