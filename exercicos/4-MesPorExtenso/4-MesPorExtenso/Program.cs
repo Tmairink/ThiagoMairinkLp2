@@ -23,7 +23,7 @@ namespace _4_MesPorExtenso
                     Console.WriteLine("qual é o ano da década de hoje do mes de ano de seculo do milenio presente meu patrao?");
                     a = Convert.ToInt32(Console.ReadLine());
 
-                    Console.WriteLine("{0}//{1}//{2}",d ,m.,a);
+                    Console.WriteLine("{0}//{1}//{2}",d ,m,a);
                 }
                 else
                 {
