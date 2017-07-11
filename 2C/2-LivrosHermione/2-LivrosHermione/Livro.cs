@@ -8,14 +8,14 @@ namespace _2_LivrosHermione
 {
     class Livro
     {
+        
         public string titulos;
         public int paginas;
         public int DiasDevolu;
-        int pgh = 0;
         public int LerTd(int pph, int hpd)
         {
             int pgd = pph * hpd;
-            int calcf = paginas / pgh;
+            int calcf = paginas / pgd;
             return calcf;
         }
     }

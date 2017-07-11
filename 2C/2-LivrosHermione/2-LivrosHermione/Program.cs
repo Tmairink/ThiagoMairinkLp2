@@ -13,18 +13,31 @@ namespace _2_LivrosHermione
             int pph = Convert.ToInt32(Console.ReadLine());
             int hpd = Convert.ToInt32(Console.ReadLine());
             int i = Convert.ToInt32(Console.ReadLine());
+            int inx, calcufinal=0;
 
             Livro[] livros= new Livro[i];
-            for (int n = 0; n >= i; n++) 
+            for (int n = 0; n <= i; n++)
             {
-                livros[i]= new Livro();
-                livros[i].DiasDevolu = Convert.ToInt32(Console.ReadLine());
-                livros[i].paginas = Convert.ToInt32(Console.ReadLine());
-                livros[i].titulos = Console.ReadLine();
-                int calcufinal = livros[i].LerTd(pph, hpd);
-                Console.WriteLine(calcufinal);
+                livros[n] = new Livro();
+                livros[n].DiasDevolu = Convert.ToInt32(Console.ReadLine());
+                livros[n].paginas = Convert.ToInt32(Console.ReadLine());
+                livros[n].titulos = Console.ReadLine();
+                Console.WriteLine(livros[n].LerTd(pph, hpd));
             }
-            
+            for (int n = 0; n <= i; n++)
+            {
+                inx =  livros[n].DiasDevolu - livros[n].LerTd(pph, hpd);
+
+                if(inx==0)
+                {
+                    Console.WriteLine(livros[n].titulos);
+
+                }
+                else
+                {
+                    Console.WriteLine("*");
+                }
+            }
         }
     }
 }
