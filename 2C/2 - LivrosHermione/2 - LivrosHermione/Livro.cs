@@ -4,20 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2_LivrosHermione
+namespace _2___LivrosHermione
 {
     class Livro
     {
-        
-        public string titulos;
-        public int paginas;
+        public string Titulo;
+        public int NPaginas;
         public int DiasDevolu;
         public int LerTd(int pph, int hpd)
         {
             int pgd = pph * hpd;
-            int calcf = paginas / pgd;
+            int calcf = NPaginas / pgd;
             return calcf;
         }
     }
-    
 }

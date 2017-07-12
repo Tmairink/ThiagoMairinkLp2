@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{879CB07A-9802-4A68-9AF5-6B1978FF30E8}</ProjectGuid>
+    <ProjectGuid>{35BD5D06-6156-42CF-9897-B21B839DEA7F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_2_LivrosHermione</RootNamespace>
-    <AssemblyName>2-LivrosHermione</AssemblyName>
+    <RootNamespace>_2___LivrosHermione</RootNamespace>
+    <AssemblyName>2 - LivrosHermione</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
