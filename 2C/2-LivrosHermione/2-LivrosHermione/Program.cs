@@ -13,7 +13,7 @@ namespace _2_LivrosHermione
             int pph = Convert.ToInt32(Console.ReadLine());
             int hpd = Convert.ToInt32(Console.ReadLine());
             int i = Convert.ToInt32(Console.ReadLine());
-            int inx, calcufinal=0;
+            int inx;
 
             Livro[] livros= new Livro[i];
             for (int n = 0; n <= i; n++)
