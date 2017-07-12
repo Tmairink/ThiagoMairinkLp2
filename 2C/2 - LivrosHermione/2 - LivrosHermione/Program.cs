@@ -20,7 +20,7 @@ namespace _2___LivrosHermione
             {
                 Livros[n] = new Livro();
                 Livros[n].DiasDevolu = Convert.ToInt32(Console.ReadLine());
-                Livros[n].NPaginas = Convert.ToInt32(Console.ReadLine());
+                Livros[n].NuPaginas = Convert.ToInt32(Console.ReadLine());
                 Livros[n].Titulo = Console.ReadLine();
                 Console.WriteLine(Livros[n].LerTd(pph, hpd) + "Dias para ler todo o livro");
             }
