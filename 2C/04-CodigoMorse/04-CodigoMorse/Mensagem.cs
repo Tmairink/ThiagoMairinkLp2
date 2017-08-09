@@ -15,7 +15,7 @@ namespace _04_CodigoMorse
         {
             for (int i = 0; i < usuario.Length; i++)
             {
-
+                Console.Beep();
             }
             return retorno;
         }
