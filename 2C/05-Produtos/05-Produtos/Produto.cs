@@ -8,6 +8,7 @@ namespace _05_Produtos
 {
     class Produto
     {
+        
         private int id;
         public int Id {
             get { return id; } 
@@ -18,12 +19,13 @@ namespace _05_Produtos
         private int quantidade;
         public int Quantidade { get { return quantidade; } }
 
-        public string Nome { get; set; }
-
+        private string nome;
+        public string Nome { get { return nome; } }
+        
         public Produto(int id,string Nome,double Preco)
         {
             this.id = id;
-            this.Nome = Nome;
+            this.nome = Nome;
             this.Preco = Preco;
             this.quantidade = 0;
         }
@@ -41,8 +43,10 @@ namespace _05_Produtos
         }
         public string Imprimir()
         {
-            return String.Format(" Id {0}, Nome {1}, Preço R${2:0.00}", Id , Nome, Preco);
+            return String.Format(" Id {0}, Nome {1}, Preço R${2:0.00} , Estoque: {3}", Id , Nome, Preco, Quantidade);
         }
+
+        
 
     }
 }
