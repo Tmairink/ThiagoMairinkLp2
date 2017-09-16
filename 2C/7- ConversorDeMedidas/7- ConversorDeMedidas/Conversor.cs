@@ -21,34 +21,25 @@ namespace _7__ConversorDeMedidas
         static double cm;
         static double km;
         static double R;
+        static double valor;
 
         public static double Peso (x)
         {
-            
+            valor = x;
             //kg pra g
-            R= x*1000;
+            R= valor*1000;
             //kg pra lb
             R=
             //kg pra t
             R=
-            //g pra lb
-            R=
-            //g pra t
-            R=
             //g pra kg
-            R= x/1000;
+            R= valor/1000;
             //lb pra kg
-            R=
-            //lb pra g
-            R=
-            //lb pra t
-            R=
+            R=          
             //t pra kg
             R=
-            //t pra g
-            R=
-            //t pra lb
-            R=
+            
+            return valor
         }
 
     }
