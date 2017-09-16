@@ -10,7 +10,9 @@ namespace _04_CodigoMorse
     {
         public string usuario;
         public string retorno;
-        
+        public string[] tabela = new string[] { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", };
+        public string[] letra = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+
 
         public string Som(string usuario)
         {
@@ -23,32 +25,32 @@ namespace _04_CodigoMorse
         
         public string Morse(string usuario)
         {
+            int i;
             string[] retorno2 = new string[usuario.Length - 1];
-            for (int i=0; i < usuario.Length-1; i++)
+            for (i = 0; i < usuario.Length - 1; i++)
             {
                 this.usuario = usuario;
-                string[] tabela = new string[] { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", };
-                string[] letra = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+                
 
                 string x = Convert.ToString(usuario.Length - 1);
-                if(x==letra[i])
+                if (x == letra[i])
                 {
-                    retorno2[i]=letra[i];
+                    retorno2[i] = letra[i];
 
                 }
-                
-                if(true)
+
+                if (true)
                 {
-                    retorno2[i]=tabela[i];
-                    
+                    retorno2[i] = tabela[i];
+
 
                 }
-                
-                
+
+
             }
-               return retorno2[i];      
+            return retorno2[3];
 
-        }   
-        
+        }
+
     }
 }
