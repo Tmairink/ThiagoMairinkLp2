@@ -17,10 +17,8 @@ namespace _08_Empresa
             set { EmpresaMatriz = value; }
         }
         
-        public Tercerizado(int id,string nome,int dtentrada )
+        public Tercerizado(int id,string nome,int dtentrada ):base (int id, string nome)
         {
-            this.Id = id;
-            this.Nome = nome;
             this.Dtentrada = dtentrada;
         }
     }
