@@ -8,38 +8,47 @@ namespace _7__ConversorDeMedidas
 {
     static class Conversor
     {
-        static double kg;
-        static double g;
-        static double t;
-        static double lb;
-        static double c;
-        static double f;
-        static double k;
-        static double m;
-        static double poleg;
-        static double pes;
-        static double cm;
-        static double km;
         static double R;
+        static double Kg;
+        static double G;
+        static double T;
+        static double Lbs;
         static double valor;
-
-        public static double Peso (x)
+        public static double KgParaG (double x)
         {
             valor = x;
-            //kg pra g
             R= valor*1000;
-            //kg pra lb
-            R=
-            //kg pra t
-            R=
-            //g pra kg
+            return R;
+        }
+        public static double KgParaT (double x)
+        {
+            valor = x;
             R= valor/1000;
-            //lb pra kg
-            R=          
-            //t pra kg
-            R=
-            
-            return valor
+            return R;
+        }
+        public static double KgParaLbs (double x)
+        {
+            valor = x;
+            R = valor * 2.2046;
+            return R;
+        }
+        public static double GParaKg(double x)
+        {
+            valor = x;
+            R = valor /1000;
+            return R;
+        }
+        public static double TParaKg(double x)
+        {
+            valor = x;
+            R = valor * 1000;
+            return R;
+        }
+        public static double LbsParaKg(double x)
+        {
+            valor = x;
+            R = valor / 2.2046;
+            return R;
         }
 
     }
