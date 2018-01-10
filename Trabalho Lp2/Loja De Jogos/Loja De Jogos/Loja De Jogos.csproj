@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2258988C-3815-4A14-8880-B4CD75CA62AD}</ProjectGuid>
+    <ProjectGuid>{3DD5EF14-C3AF-4D99-8570-5C079BEF0598}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Loja_de_Jogos2</RootNamespace>
-    <AssemblyName>Loja de Jogos2</AssemblyName>
+    <RootNamespace>Loja_De_Jogos</RootNamespace>
+    <AssemblyName>Loja De Jogos</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
