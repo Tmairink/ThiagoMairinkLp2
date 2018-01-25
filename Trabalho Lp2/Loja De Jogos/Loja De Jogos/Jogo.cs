@@ -12,13 +12,14 @@ namespace Loja_De_Jogos
         SqlConnection conexao = new SqlConnection("Data Source = localhost; Initial Catalog = LojaDeJogos; Integrated Security = SSPI;");
         SqlCommand cmd = new SqlCommand();
 
-        public void Cadastro(string Nome)
+        public void Cadastro(string Nome,string Plataforma)
         {
             cmd.Connection = conexao;
-            cmd.CommandText = String.Format(@"SELECT DISTINCT Nome, Quantidade
+            cmd.CommandText = String.Format(@"SELECT DISTINCT Nome, Quantidade, Plataforma
                                               FROM Jogo 
-                                              WHERE Nome ='{0}' ", Nome);
-            string nome = "kdkdjgs";
+                                              WHERE Nome ='{0}' And Plataforma = '{1}' ", Nome , Plataforma);
+            string nome = "Lllllll";
+            string plataforma = "Ttttttt";
             int quantidade = 0;
             int Quantidade = 0;
             cmd.Connection.Open();
@@ -29,13 +30,14 @@ namespace Loja_De_Jogos
                 {
                     nome = reader.GetString(0);
                     quantidade = reader.GetInt32(1);
+                    plataforma = reader.GetString(2);
                 }
             }
             cmd.Connection.Close();
 
-            if (Nome!= nome)
+            if (Nome != nome && plataforma != Plataforma)
             {
-                string Genero, Plataforma;
+                string Genero;
                 int Preço, Ano;
 
                 Console.Write("Quantidade de Jogos:");
@@ -46,8 +48,7 @@ namespace Loja_De_Jogos
                 Ano = Convert.ToInt32(Console.ReadLine());
                 Console.Write("Genero do Jogo:");
                 Genero = Console.ReadLine();
-                Console.Write("Plataforma do Jogo:");
-                Plataforma = Console.ReadLine();
+               
 
                 cmd.Connection = conexao;
                 cmd.CommandText = String.Format(@"Insert 
@@ -57,7 +58,7 @@ namespace Loja_De_Jogos
                 cmd.ExecuteNonQuery();
                 cmd.Connection.Close();
             }
-            else if(Nome == nome)
+            else if(Nome == nome && plataforma == Plataforma)
             {
                 Console.Write("Quantidade de Jogos:");
                 Quantidade = Convert.ToInt32(Console.ReadLine());
@@ -65,7 +66,7 @@ namespace Loja_De_Jogos
                 cmd.Connection = conexao;
                 cmd.CommandText = String.Format(@"UPDATE Jogo
                                                   SET Quantidade = {0}
-                                                  WHERE Nome = '{1}'; ", quantidade, Nome);
+                                                  WHERE Nome = '{1}' And Plataforma = '{2}'; ", quantidade, Nome, Plataforma);
                 cmd.Connection.Open();
                 cmd.ExecuteNonQuery();
                 cmd.Connection.Close();
@@ -78,7 +79,6 @@ namespace Loja_De_Jogos
             cmd.CommandText = String.Format(@"SELECT DISTINCT Nome , Preco, AnoDeLanc, Genero, Plataforma, Quantidade
                                               FROM Jogo 
                                               WHERE Nome ='{0}' ", Nome);
-
             string nome;
             int Preco = 0;
             int Ano = 0;
@@ -99,18 +99,18 @@ namespace Loja_De_Jogos
                     Plataforma = reader.GetString(4);
                     Quantidade = reader.GetInt32(5);
 
-                    Console.WriteLine("{0}, {1}, {2}, {3}, {4}, {5}", nome, Preco, Ano, Genero, Plataforma, Quantidade);
+                    Console.WriteLine("Nome: {0}.\nPreço: {1}.\nAno: {2}.\nGenêro {3}.\nPlataforma: {4}.\nQuantidade: {5}.", nome, Preco, Ano, Genero, Plataforma, Quantidade);
                 }
             }
             cmd.Connection.Close();
             if (Quantidade >= 1)
             {
-                Console.Write("Comprar? (S/N)");
+                Console.WriteLine("\nComprar? (S/N)");
                 char M = Convert.ToChar(Console.ReadLine());
 
                 if (M == 'S' || M == 's')
                 {
-                    Console.Write("Quantos Deseja?");
+                    Console.WriteLine("\nQuantos Deseja?");
                     int q = Convert.ToInt32(Console.ReadLine());
                     if (Quantidade >= q)
                     {
@@ -123,17 +123,69 @@ namespace Loja_De_Jogos
                         cmd.Connection.Open();
                         cmd.ExecuteNonQuery();
                         cmd.Connection.Close();
+
                     }
                     else
                     {
-                        Console.WriteLine("Quantidade Indesejada");
+                        Console.WriteLine("\nQuantidade Indesejada");
                     }
                 }
             }
             else
             {
-                Console.WriteLine("Fora de estoque");
+                Console.WriteLine("\nFora de estoque");
             }
+        }
+        public void Atualizacao(string Nome,string Plataforma)
+        {
+            cmd.Connection = conexao;
+            cmd.CommandText = String.Format(@"SELECT DISTINCT Nome, Plataforma
+                                              FROM Jogo 
+                                              WHERE Nome ='{0}' And Plataforma = '{1}' ", Nome, Plataforma);
+            string nome = "Lllllll";
+            string plataforma = "Ttttttt";
+            cmd.Connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read() == true)
+                {
+                    nome = reader.GetString(0);
+                    plataforma = reader.GetString(1);
+                }
+            }
+
+            cmd.Connection.Close();
+            Console.WriteLine("1-Genero || 2-Preço ");
+            int x;
+            x = Convert.ToInt32(Console.ReadLine());
+
+            if(x==1)
+            {
+                Console.Write("Novo genero do Jogo: ");
+                string Ngenero = Console.ReadLine();
+                cmd.Connection = conexao;
+                cmd.CommandText = String.Format(@"UPDATE Jogo
+                                                  SET Genero = '{0}'
+                                                  WHERE Nome = '{1}' And Plataforma = '{2}'; ", Ngenero, Nome, Plataforma);
+                cmd.Connection.Open();
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+            }
+            else if(x==2)
+            {
+                Console.Write("Novo Preço do Jogo: ");
+                int Preco = Convert.ToInt32(Console.ReadLine());
+                cmd.Connection = conexao;
+                cmd.CommandText = String.Format(@"UPDATE Jogo
+                                                  SET Preco = {0}
+                                                  WHERE Nome = '{1}' And Plataforma = '{2}'; ", Preco, Nome, Plataforma);
+                cmd.Connection.Open();
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+            }
+
         }
 
     }

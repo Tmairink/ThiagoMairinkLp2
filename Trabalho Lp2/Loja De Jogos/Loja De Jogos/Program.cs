@@ -10,15 +10,17 @@ namespace Loja_De_Jogos
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Cadastro-1  compra-2 troca-3");
-            int x = Convert.ToInt32(Console.ReadLine());
             Jogo jg = new Jogo();
+            Console.WriteLine("Cadastro-1 || Compra-2 || Troca-3 || Atualizaçao de Dados-4");
+            int x = Convert.ToInt32(Console.ReadLine());
             if (x == 1)
             {
-                string Nome;
+                string Nome, Plataforma;
                 Console.Write("Nome do Jogo:");
                 Nome = Console.ReadLine();
-                jg.Cadastro(Nome);
+                Console.Write("Paltaforma do Jogo:");
+                Plataforma = Console.ReadLine();
+                jg.Cadastro(Nome, Plataforma);
                 
             }
             else if (x == 2)
@@ -31,8 +33,17 @@ namespace Loja_De_Jogos
             {
 
             }
+            else if(x==4)
+            {
+                Console.Write("Nome do Jogo a ser atualizado:");
+                string Nome = Console.ReadLine();
+                Console.Write("Paltaforma do Jogo:");
+                string Plataforma = Console.ReadLine();
+                jg.Atualizacao(Nome, Plataforma);
+
+            }
             else
-                Console.WriteLine("erro");
+                Console.WriteLine("Erro");
         }
     }
 }
