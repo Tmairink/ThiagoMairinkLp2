@@ -60,6 +60,7 @@ namespace Loja_De_Jogos
                     cmd.Connection.Open();
                     cmd.ExecuteNonQuery();
                     cmd.Connection.Close();
+                    Console.WriteLine("Cadastrado com sucesso");
                 }
                 else if (Nome == nome && plataforma == Plataforma)
                 {
@@ -73,6 +74,7 @@ namespace Loja_De_Jogos
                     cmd.Connection.Open();
                     cmd.ExecuteNonQuery();
                     cmd.Connection.Close();
+                    Console.WriteLine("Cadastrado com sucesso");
 
                 }
 
@@ -142,6 +144,7 @@ namespace Loja_De_Jogos
                             cmd.Connection.Open();
                             cmd.ExecuteNonQuery();
                             cmd.Connection.Close();
+                            Console.WriteLine("Compra efetuada com sucesso");
 
                         }
                         else
@@ -191,35 +194,42 @@ namespace Loja_De_Jogos
                 }
 
                 cmd.Connection.Close();
-                Console.WriteLine("1-Genero || 2-Preço ");
-                int x;
-                x = Convert.ToInt32(Console.ReadLine());
-
-                if (x == 1)
+                if (nome != "Lllllll")
                 {
-                    Console.Write("Novo genero do Jogo: ");
-                    string Ngenero = Console.ReadLine();
-                    cmd.Connection = conexao;
-                    cmd.CommandText = String.Format(@"UPDATE Jogo
+                    Console.WriteLine("1-Genero || 2-Preço ");
+                    int x;
+                    x = Convert.ToInt32(Console.ReadLine());
+
+                    if (x == 1)
+                    {
+                        Console.Write("Novo genero do Jogo: ");
+                        string Ngenero = Console.ReadLine();
+                        cmd.Connection = conexao;
+                        cmd.CommandText = String.Format(@"UPDATE Jogo
                                                   SET Genero = '{0}'
                                                   WHERE Nome = '{1}' And Plataforma = '{2}'; ", Ngenero, Nome, Plataforma);
-                    cmd.Connection.Open();
-                    cmd.ExecuteNonQuery();
-                    cmd.Connection.Close();
+                        cmd.Connection.Open();
+                        cmd.ExecuteNonQuery();
+                        cmd.Connection.Close();
+                        Console.WriteLine("Atualizado com sucesso");
 
-                }
-                else if (x == 2)
-                {
-                    Console.Write("Novo Preço do Jogo: ");
-                    int Preco = Convert.ToInt32(Console.ReadLine());
-                    cmd.Connection = conexao;
-                    cmd.CommandText = String.Format(@"UPDATE Jogo
+                    }
+                    else if (x == 2)
+                    {
+                        Console.Write("Novo Preço do Jogo: ");
+                        int Preco = Convert.ToInt32(Console.ReadLine());
+                        cmd.Connection = conexao;
+                        cmd.CommandText = String.Format(@"UPDATE Jogo
                                                   SET Preco = {0}
                                                   WHERE Nome = '{1}' And Plataforma = '{2}'; ", Preco, Nome, Plataforma);
-                    cmd.Connection.Open();
-                    cmd.ExecuteNonQuery();
-                    cmd.Connection.Close();
+                        cmd.Connection.Open();
+                        cmd.ExecuteNonQuery();
+                        cmd.Connection.Close();
+                        Console.WriteLine("Atualizado com sucesso");
+                    }
                 }
+                else
+                    Console.WriteLine("Jogo Invalido");
             }
             catch (FormatException ex)
             {

@@ -22,8 +22,10 @@ namespace Loja_De_Jogos
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {
+                int i = 0;
                 while (reader.Read() == true)
                 {
+                    
                     int AnoLanc = reader.GetInt32(0);
                     int ona = ano - AnoLanc;
                     if (ona > 8)
@@ -31,12 +33,13 @@ namespace Loja_De_Jogos
                         cmd.CommandText = String.Format(@"DELET 
                                                           FROM Jogo
                                                           WHERE AnoDeLanc < '{0}';", ano);
-                        Console.WriteLine("Deletado");
+                        i++;
                     }
-
+                    Console.WriteLine("Deletado {0} Cadastro(s) com mais de 8 anos de lancamento", i);
                 }
             }
-            for (int i=0;i<1000000;i++)
+            cmd.Connection.Close();
+            while(true)
             {
               
                 Jogo jg = new Jogo();
