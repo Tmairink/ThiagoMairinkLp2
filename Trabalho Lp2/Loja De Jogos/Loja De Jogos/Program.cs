@@ -27,16 +27,16 @@ namespace Loja_De_Jogos
                 {
                     
                     int AnoLanc = reader.GetInt32(0);
-                    int ona = ano - AnoLanc;
-                    if (ona > 8)
+                    AnoLanc = ano - AnoLanc;
+                    if (AnoLanc > 8)
                     {
                         cmd.CommandText = String.Format(@"DELETE 
                                                           FROM Jogo
                                                           WHERE AnoDeLanc < '{0}';", ano);
                         i++;
-                    }
-                    Console.WriteLine("Deletado {0} Cadastro(s) com mais de 8 anos de lancamento", i);
+                    }                    
                 }
+                Console.WriteLine("Deletado {0} Cadastro(s) com mais de 8 anos de lancamento", i);
             }
             cmd.Connection.Close();
             while (true)
@@ -45,8 +45,8 @@ namespace Loja_De_Jogos
                 {
                     Jogo jg = new Jogo();
                     Console.WriteLine("Cadastro-1 || Compra-2 || Atualizaçao de Dados-3 || Sair-4");
-                    int x = Convert.ToInt32(Console.ReadLine());
-                    if (x == 1)
+                    int Menu = Convert.ToInt32(Console.ReadLine());
+                    if (Menu == 1)
                     {
                         string Nome, Plataforma;
                         Console.Write("Nome do Jogo:");
@@ -56,7 +56,7 @@ namespace Loja_De_Jogos
                         jg.Cadastro(Nome, Plataforma);
 
                     }
-                    else if (x == 2)
+                    else if (Menu == 2)
                     {
                         Console.Write("Nome do Jogo a ser comprado:");
                         string Nome = Console.ReadLine();
@@ -64,7 +64,7 @@ namespace Loja_De_Jogos
                         string Plataforma = Console.ReadLine();
                         jg.Compra(Nome, Plataforma);
                     }
-                    else if (x == 3)
+                    else if (Menu == 3)
                     {
                         Console.Write("Nome do Jogo a ser atualizado:");
                         string Nome = Console.ReadLine();
@@ -73,7 +73,7 @@ namespace Loja_De_Jogos
                         jg.Atualizacao(Nome, Plataforma);
 
                     }
-                    else if (x == 4)
+                    else if (Menu == 4)
                     {
                         goto sair;
                     }

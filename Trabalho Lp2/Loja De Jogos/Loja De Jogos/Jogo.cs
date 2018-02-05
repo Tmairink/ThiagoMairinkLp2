@@ -124,9 +124,9 @@ namespace Loja_De_Jogos
                 { 
                     Console.WriteLine("\n||Acima de 3 unidades desconto de 20%||");
                     Console.WriteLine("\nComprar? (S/N)");
-                    char M = Convert.ToChar(Console.ReadLine());
+                    char c = Convert.ToChar(Console.ReadLine());
 
-                    if (M == 'S' || M == 's')
+                    if (c == 'S' || c == 's')
                     {
                         Console.WriteLine("\nQuantos Deseja?");
                         int q = Convert.ToInt32(Console.ReadLine());
@@ -144,10 +144,10 @@ namespace Loja_De_Jogos
                             cmd.Connection.Close();
                             if (q >= 3)
                             {
-                                int qs = Preco * q ;
-                                Console.WriteLine("O Valar da compra sem desconto foi de: {0}", qs);
-                                double qd = (qs - (qs * 0.20));
-                                Console.WriteLine("O Valar da compra Com desconto foi de: {0}", qd);
+                                Preco = Preco * q ;
+                                Console.WriteLine("O Valar da compra sem desconto foi de: {0}", Preco);
+                                double ValorC = (Preco - (Preco * 0.20));
+                                Console.WriteLine("O Valar da compra Com desconto foi de: {0}", ValorC);
                             }
                             else
                                 Console.WriteLine("O Valar da compra foi de: {0}", Preco * q);
@@ -203,10 +203,10 @@ namespace Loja_De_Jogos
                 if (nome != "Lllllll")
                 {
                     Console.WriteLine("1-Genero || 2-Preço ");
-                    int x;
+                    int menu;
                     x = Convert.ToInt32(Console.ReadLine());
 
-                    if (x == 1)
+                    if (menu == 1)
                     {
                         Console.Write("Novo genero do Jogo: ");
                         string Ngenero = Console.ReadLine();
@@ -220,7 +220,7 @@ namespace Loja_De_Jogos
                         Console.WriteLine("Atualizado com sucesso");
 
                     }
-                    else if (x == 2)
+                    else if (menu == 2)
                     {
                         Console.Write("Novo Preço do Jogo: ");
                         int Preco = Convert.ToInt32(Console.ReadLine());
