@@ -30,7 +30,7 @@ namespace Loja_De_Jogos
                     int ona = ano - AnoLanc;
                     if (ona > 8)
                     {
-                        cmd.CommandText = String.Format(@"DELET 
+                        cmd.CommandText = String.Format(@"DELETE 
                                                           FROM Jogo
                                                           WHERE AnoDeLanc < '{0}';", ano);
                         i++;
@@ -39,44 +39,62 @@ namespace Loja_De_Jogos
                 }
             }
             cmd.Connection.Close();
-            while(true)
+            while (true)
             {
-              
-                Jogo jg = new Jogo();
-                Console.WriteLine("Cadastro-1 || Compra-2 || Troca-3 || Atualizaçao de Dados-4");
-                int x = Convert.ToInt32(Console.ReadLine());
-                if (x == 1)
+                try
                 {
-                    string Nome, Plataforma;
-                    Console.Write("Nome do Jogo:");
-                    Nome = Console.ReadLine();
-                    Console.Write("Paltaforma do Jogo:");
-                    Plataforma = Console.ReadLine();
-                    jg.Cadastro(Nome, Plataforma);
+                    Jogo jg = new Jogo();
+                    Console.WriteLine("Cadastro-1 || Compra-2 || Atualizaçao de Dados-3 || Sair-4");
+                    int x = Convert.ToInt32(Console.ReadLine());
+                    if (x == 1)
+                    {
+                        string Nome, Plataforma;
+                        Console.Write("Nome do Jogo:");
+                        Nome = Console.ReadLine();
+                        Console.Write("Paltaforma do Jogo:");
+                        Plataforma = Console.ReadLine();
+                        jg.Cadastro(Nome, Plataforma);
 
-                }
-                else if (x == 2)
-                {
-                    Console.Write("Nome do Jogo a ser comprado:");
-                    string Nome = Console.ReadLine();
-                    jg.Compra(Nome);
-                }
-                else if (x == 3)
-                {
+                    }
+                    else if (x == 2)
+                    {
+                        Console.Write("Nome do Jogo a ser comprado:");
+                        string Nome = Console.ReadLine();
+                        Console.Write("Plataforma do Jogo a ser comprado:");
+                        string Plataforma = Console.ReadLine();
+                        jg.Compra(Nome, Plataforma);
+                    }
+                    else if (x == 3)
+                    {
+                        Console.Write("Nome do Jogo a ser atualizado:");
+                        string Nome = Console.ReadLine();
+                        Console.Write("Paltaforma do Jogo:");
+                        string Plataforma = Console.ReadLine();
+                        jg.Atualizacao(Nome, Plataforma);
 
+                    }
+                    else if (x == 4)
+                    {
+                        goto sair;
+                    }
+                    else
+                        Console.WriteLine("Erro");
                 }
-                else if (x == 4)
+                catch (FormatException ex)
                 {
-                    Console.Write("Nome do Jogo a ser atualizado:");
-                    string Nome = Console.ReadLine();
-                    Console.Write("Paltaforma do Jogo:");
-                    string Plataforma = Console.ReadLine();
-                    jg.Atualizacao(Nome, Plataforma);
-
+                    Console.WriteLine(ex.Message);
                 }
-                else
-                    Console.WriteLine("Erro");
+                catch (OverflowException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
             }
+            sair:;
         }
     }
 }

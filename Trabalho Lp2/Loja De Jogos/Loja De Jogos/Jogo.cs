@@ -19,7 +19,7 @@ namespace Loja_De_Jogos
                 cmd.Connection = conexao;
                 cmd.CommandText = String.Format(@"SELECT DISTINCT Nome, Quantidade, Plataforma
                                               FROM Jogo 
-                                              WHERE Nome ='{0}' And Plataforma = '{1}' ", Nome, Plataforma);
+                                              WHERE Nome ='{0}' And Plataforma = '{1}';", Nome, Plataforma);
                 string nome = "Lllllll";
                 string plataforma = "Ttttttt";
                 int quantidade = 0;
@@ -92,19 +92,17 @@ namespace Loja_De_Jogos
                 Console.WriteLine(ex.Message);
             }
         }
-        public void Compra(string Nome)
+        public void Compra(string Nome, string Plataforma)
         {
             try
             {
                 cmd.Connection = conexao;
-                cmd.CommandText = String.Format(@"SELECT DISTINCT Nome , Preco, AnoDeLanc, Genero, Plataforma, Quantidade
+                cmd.CommandText = String.Format(@"SELECT Preco, AnoDeLanc, Genero, Quantidade
                                               FROM Jogo 
-                                              WHERE Nome ='{0}' ", Nome);
-                string nome;
+                                              WHERE Nome ='{0}' And Plataforma ='{1}'; ", Nome , Plataforma);
                 int Preco = 0;
                 int Ano = 0;
                 string Genero;
-                string Plataforma;
                 int Quantidade = 0;
 
                 cmd.Connection.Open();
@@ -113,19 +111,18 @@ namespace Loja_De_Jogos
                 {
                     while (reader.Read() == true)
                     {
-                        nome = reader.GetString(0);
-                        Preco = reader.GetInt32(1);
-                        Ano = reader.GetInt32(2);
-                        Genero = reader.GetString(3);
-                        Plataforma = reader.GetString(4);
-                        Quantidade = reader.GetInt32(5);
+                        Preco = reader.GetInt32(0);
+                        Ano = reader.GetInt32(1);
+                        Genero = reader.GetString(2);
+                        Quantidade = reader.GetInt32(3);
 
-                        Console.WriteLine("Nome: {0}.\nPreço: {1}.\nAno: {2}.\nGenêro {3}.\nPlataforma: {4}.\nQuantidade: {5}.", nome, Preco, Ano, Genero, Plataforma, Quantidade);
+                        Console.WriteLine("\nPreço: {0}.\nAno: {1}.\nGenêro {2}.\nPlataforma: {3}.\nQuantidade: {4}.", Preco, Ano, Genero, Plataforma, Quantidade);
                     }
                 }
                 cmd.Connection.Close();
                 if (Quantidade >= 1)
-                {
+                { 
+                    Console.WriteLine("\n||Acima de 3 unidades desconto de 20%||");
                     Console.WriteLine("\nComprar? (S/N)");
                     char M = Convert.ToChar(Console.ReadLine());
 
@@ -135,16 +132,25 @@ namespace Loja_De_Jogos
                         int q = Convert.ToInt32(Console.ReadLine());
                         if (Quantidade >= q)
                         {
-                            q = Quantidade - q;
+                            Quantidade -= q;
+                           
 
                             cmd.Connection = conexao;
                             cmd.CommandText = String.Format(@"UPDATE Jogo
                                                   SET Quantidade = {0}
-                                                  WHERE Nome = '{1}'; ", q, Nome);
+                                                  WHERE Nome = '{1}'; ", Quantidade, Nome);
                             cmd.Connection.Open();
                             cmd.ExecuteNonQuery();
                             cmd.Connection.Close();
-                            Console.WriteLine("Compra efetuada com sucesso");
+                            if (q >= 3)
+                            {
+                                int qs = Preco * q ;
+                                Console.WriteLine("O Valar da compra sem desconto foi de: {0}", qs);
+                                double qd = (qs - (qs * 0.20));
+                                Console.WriteLine("O Valar da compra Com desconto foi de: {0}", qd);
+                            }
+                            else
+                                Console.WriteLine("O Valar da compra foi de: {0}", Preco * q);
 
                         }
                         else
@@ -179,7 +185,7 @@ namespace Loja_De_Jogos
                 cmd.Connection = conexao;
                 cmd.CommandText = String.Format(@"SELECT DISTINCT Nome, Plataforma
                                               FROM Jogo 
-                                              WHERE Nome ='{0}' And Plataforma = '{1}' ", Nome, Plataforma);
+                                              WHERE Nome ='{0}' And Plataforma = '{1}'; ", Nome, Plataforma);
                 string nome = "Lllllll";
                 string plataforma = "Ttttttt";
                 cmd.Connection.Open();
