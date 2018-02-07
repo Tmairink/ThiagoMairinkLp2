@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loja De Jogos", "Loja De Jogos\Loja De Jogos.csproj", "{3DD5EF14-C3AF-4D99-8570-5C079BEF0598}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loja De Jogos", "Loja De Jogos\Loja De Jogos.csproj", "{A1C20B29-87CE-4700-B56A-7B390C281A1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3DD5EF14-C3AF-4D99-8570-5C079BEF0598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DD5EF14-C3AF-4D99-8570-5C079BEF0598}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DD5EF14-C3AF-4D99-8570-5C079BEF0598}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DD5EF14-C3AF-4D99-8570-5C079BEF0598}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1C20B29-87CE-4700-B56A-7B390C281A1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1C20B29-87CE-4700-B56A-7B390C281A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1C20B29-87CE-4700-B56A-7B390C281A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1C20B29-87CE-4700-B56A-7B390C281A1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A2E9496E-E540-47EE-9CFA-3733F636D137}
 	EndGlobalSection
 EndGlobal

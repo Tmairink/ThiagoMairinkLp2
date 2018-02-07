@@ -11,34 +11,43 @@ namespace Loja_De_Jogos
     {
         static void Main(string[] args)
         {
+
             SqlConnection conexao = new SqlConnection("Data Source = localhost; Initial Catalog = LojaDeJogos; Integrated Security = SSPI;");
             SqlCommand cmd = new SqlCommand();
 
             int ano = DateTime.Now.Year;
             cmd.Connection = conexao;
-            cmd.CommandText = String.Format(@"SELECT AnoDeLanc
+            cmd.CommandText = String.Format(@"SELECT AnoDeLanc, Id
                                               FROM Jogo;");
             cmd.Connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {
-                int i = 0;
-                while (reader.Read() == true)
+                List<int> delet = new List<int>();
+                while (reader.Read())
                 {
-                    
+
                     int AnoLanc = reader.GetInt32(0);
-                    AnoLanc = ano - AnoLanc;
-                    if (AnoLanc > 8)
+                    int idJogo = reader.GetInt32(1);
+                    int idadeJogo = ano - AnoLanc;
+                    if (idadeJogo > 8)
                     {
-                        cmd.CommandText = String.Format(@"DELETE 
-                                                          FROM Jogo
-                                                          WHERE AnoDeLanc < '{0}';", ano);
-                        i++;
-                    }                    
+                        delet.Add(idJogo);                        
+                    }
                 }
-                Console.WriteLine("Deletado {0} Cadastro(s) com mais de 8 anos de lancamento", i);
+                cmd.Connection.Close();
+                for (int f = 0; f < delet.Count; f++)
+                {
+                    cmd.CommandText = String.Format(@"DELETE 
+                                                      FROM Jogo
+                                                      WHERE Id = {0};", delet[f]);
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
+                }
+                Console.WriteLine("Deletado {0} Cadastro(s) com mais de 8 anos de lancamento", delet.Count);
             }
-            cmd.Connection.Close();
+
             while (true)
             {
                 try
@@ -75,26 +84,17 @@ namespace Loja_De_Jogos
                     }
                     else if (Menu == 4)
                     {
-                        goto sair;
+                        break;
                     }
                     else
                         Console.WriteLine("Erro");
-                }
-                catch (FormatException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                catch (OverflowException ex)
-                {
-                    Console.WriteLine(ex.Message);
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
-                
+
             }
-            sair:;
         }
     }
 }

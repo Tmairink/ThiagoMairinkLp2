@@ -33,6 +33,7 @@ namespace Loja_De_Jogos
                         nome = reader.GetString(0);
                         quantidade = reader.GetInt32(1);
                         plataforma = reader.GetString(2);
+
                     }
                 }
                 cmd.Connection.Close();
@@ -79,15 +80,7 @@ namespace Loja_De_Jogos
                 }
 
             }
-            catch(FormatException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch(OverflowException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -99,7 +92,7 @@ namespace Loja_De_Jogos
                 cmd.Connection = conexao;
                 cmd.CommandText = String.Format(@"SELECT Preco, AnoDeLanc, Genero, Quantidade
                                               FROM Jogo 
-                                              WHERE Nome ='{0}' And Plataforma ='{1}'; ", Nome , Plataforma);
+                                              WHERE Nome ='{0}' And Plataforma ='{1}'; ", Nome, Plataforma);
                 int Preco = 0;
                 int Ano = 0;
                 string Genero;
@@ -121,8 +114,8 @@ namespace Loja_De_Jogos
                 }
                 cmd.Connection.Close();
                 if (Quantidade >= 1)
-                { 
-                    Console.WriteLine("\n||Acima de 3 unidades desconto de 20%||");
+                {
+                    Console.WriteLine("\n||Acima de 3 unidades desconto de 15%||");
                     Console.WriteLine("\nComprar? (S/N)");
                     char c = Convert.ToChar(Console.ReadLine());
 
@@ -133,7 +126,7 @@ namespace Loja_De_Jogos
                         if (Quantidade >= q)
                         {
                             Quantidade -= q;
-                           
+
 
                             cmd.Connection = conexao;
                             cmd.CommandText = String.Format(@"UPDATE Jogo
@@ -144,9 +137,9 @@ namespace Loja_De_Jogos
                             cmd.Connection.Close();
                             if (q >= 3)
                             {
-                                Preco = Preco * q ;
+                                Preco = Preco * q;
                                 Console.WriteLine("O Valar da compra sem desconto foi de: {0}", Preco);
-                                double ValorC = (Preco - (Preco * 0.20));
+                                double ValorC = (Preco - (Preco * 0.15));
                                 Console.WriteLine("O Valar da compra Com desconto foi de: {0}", ValorC);
                             }
                             else
@@ -155,7 +148,7 @@ namespace Loja_De_Jogos
                         }
                         else
                         {
-                            Console.WriteLine("\nQuantidade Indesejada");
+                            Console.WriteLine("\nA quantidade em estoque é insuficiente");
                         }
                     }
                 }
@@ -165,20 +158,12 @@ namespace Loja_De_Jogos
                     Console.WriteLine("\nFora de estoque");
                 }
             }
-            catch (FormatException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (OverflowException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
         }
-        public void Atualizacao(string Nome,string Plataforma)
+        public void Atualizacao(string Nome, string Plataforma)
         {
             try
             {
@@ -192,7 +177,7 @@ namespace Loja_De_Jogos
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    while (reader.Read() == true)
+                    while (reader.Read())
                     {
                         nome = reader.GetString(0);
                         plataforma = reader.GetString(1);
@@ -204,7 +189,7 @@ namespace Loja_De_Jogos
                 {
                     Console.WriteLine("1-Genero || 2-Preço ");
                     int menu;
-                    x = Convert.ToInt32(Console.ReadLine());
+                    menu = Convert.ToInt32(Console.ReadLine());
 
                     if (menu == 1)
                     {
@@ -237,20 +222,10 @@ namespace Loja_De_Jogos
                 else
                     Console.WriteLine("Jogo Invalido");
             }
-            catch (FormatException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (OverflowException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
         }
-
     }
 }
